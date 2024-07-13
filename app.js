@@ -38,15 +38,16 @@ rl.question("How many wallets do you want to generate? ", (numWallets) => {
         console.log(`Generating wallet ${i + 1} of ${numWallets}`);
 
         // Generating the private key
-        const privateKey = genEth.Wallet.createRandom().mnemonic.phrase;
+        const mnemonic = genEth.Wallet.createRandom().mnemonic.phrase;
 
         // Generating the address from private key
-        const publicKey = ethers.Wallet.fromPhrase(privateKey);
+        const get_eth = ethers.Wallet.fromPhrase(mnemonic);
 
         // Adding the generated wallet to the array
         wallets.push({
-            private_key: privateKey,
-            public_address: publicKey.address
+            mnemonic: mnemonic,
+            privatekey: get_eth.privateKey,
+            public_address: get_eth.address
         });
     }
 
